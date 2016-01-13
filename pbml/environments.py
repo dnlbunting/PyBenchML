@@ -3,11 +3,11 @@ from subprocess import Popen, PIPE
 import os
 import hashlib
 
-class Evironment(object):
-    """docstring for Evironment"""
+class Environment(object):
+    """docstring for Environment"""
     
     def __init__(self, base_dir, requirements, python='python', site_packages=False, verbose=False):
-        super(Evironment, self).__init__()
+        super(Environment, self).__init__()
         self.base_dir = os.path.abspath(base_dir)
         self.requirements = requirements
         self.python = python
@@ -32,13 +32,6 @@ class Evironment(object):
             p = Popen(["virtualenv", "--python", self.python, self.base_dir], stdout=PIPE, stderr=PIPE)
             stdoutdata, stderrdata = p.communicate()
             ret = p.returncode
-           
-            if verbose:
-                print "---- Call to vitualenv -----"
-                print "python: %s" % (self.python)
-                print "base_dir: %s" % (self.base_dir)
-                print "stdout: %s" % (stdoutdata)
-                print "stderr: %s" % (stderrdata)
             
             if ret != 0:
                 raise(Exception("Failed to create virtualenv:\n%s\n%s" % (stdoutdata, stderrdata)))
@@ -56,12 +49,6 @@ class Evironment(object):
             p = Popen([os.path.join(self.base_dir, "bin/pip"), "install", package], stdout=PIPE, stderr=PIPE)
             stdoutdata, stderrdata = p.communicate()
             ret = p.returncode
-            
-            if verbose:
-                print "---- Call to pip -----"
-                print "package: %s" % (package)
-                print "stdout: %s" % (stdoutdata)
-                print "stderr: %s" % (stderrdata)
            
             if ret != 0:
                 raise(Exception("Failed to install package %s:\n%s\n%s" % (package, stdoutdata, stderrdata)))
@@ -70,3 +57,12 @@ class Evironment(object):
                 print "Failed to install package %s:\n%s\n%s" % (package, stdoutdata, stderrdata)
                 raise
             
+    def run(self, args, cwd=None):
+        """docstring for run"""
+        try:
+            ret, stdoutdata, stderrdata = None, None, None
+            p = Popen([os.path.join(self.base_dir, "bin/python")]+args, stdout=PIPE, stderr=None, cwd=cwd)
+            return p               
+        except :            
+                print "Failed to call venv python %s" % (args)
+                raise

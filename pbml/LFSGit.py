@@ -20,12 +20,6 @@ def gitCall(args, cwd=None, verbose=False):
     
     ret, stdoutdata, stderrdata = None, None, None
     args = [args] if isinstance(args, basestring) else args
-    
-    if verbose:
-        print "---- Call to git -----"
-        print "args: %s" % (args)
-        print "stdout: %s" % (stdoutdata)
-        print "stderr: %s" % (stderrdata)
          
     try:
         p = Popen(["git"] + args, cwd=cwd, stdout=PIPE, stderr=PIPE)
@@ -71,14 +65,8 @@ class LFSRepo(object):
             gitCall(["clone", self.origin_repo, self.base_dir])
         except GitException, e:
             "Failed cloning repository"
-            print e
-            
-        try:
-            with open(os.path.join(self.base_dir, CONFIG_NAME), 'r') as file:
-                self.config = json.loads(' '.join([line for line in file]))
-        except:
-            raise Exception("Filed to locate a config file for the repo")
-               
+            raise e
+                    
     
     def checkout(self, commit):
         """docstring for checkout"""

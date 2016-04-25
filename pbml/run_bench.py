@@ -32,9 +32,9 @@ members = inspect.getmembers(benchmark)
 function_benchmarks =  [x for x in members if re.match("^benchmark_", x[0]) and isinstance(x[1], FunctionType )]
 
 for fbm in function_benchmarks:
-    times = [timeit(fbm[1], number=3)/3.]
+    times = [timeit(fbm[1], number=3)/3. for i in range(5)]
     print json.dumps({"commit":args.commit,
-            "file":path.basename(args.benchmark),
-            "file_hash": filehash(args.benchmark),
-            "benchmark":fbm[0],
-            "times":times,})
+                      "file":path.basename(args.benchmark),
+                      "file_hash": filehash(args.benchmark),
+                      "benchmark":fbm[0],
+                      "times":times,})

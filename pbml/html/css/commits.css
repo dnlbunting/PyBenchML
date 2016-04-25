@@ -1,0 +1,89 @@
+
+
+body{
+ 	padding-top: 50px;
+	min-height: 100%;	
+}
+html {
+    font-family: sans-serif;
+	height:100%;
+}
+
+
+
+.bodyContainer {
+  width: 100%;
+  min-height:100%;
+  display: flex;
+  padding:0;
+}
+
+.sidebar{
+	width: 250px; 
+    display: flex;
+	flex-direction: column;
+	background-color: #222;
+	align-items: center;
+	order: 0;
+	flex-shrink: 0;
+    
+	padding-top: 10px;
+    margin-left: -1px;
+  
+}
+
+.sb-panel{
+	margin:10px;
+	width: 230px;
+}
+
+.*list{
+	width:210px;
+}
+.*list-item  {
+	width:200px;
+	color:black;
+}
+
+
+.chartContainer{
+    display: flex;
+	background-color: #FFFFF0;
+	order: 1;
+	flex-wrap: wrap;
+	flex-grow:1;
+	flex-justify-content: flex-start;
+    align-content: flex-start;
+	
+}
+
+.chart {
+	
+    background-color: #FDFDFD;
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+	flex-grow:1;
+	border-radius: 25px
+
+}
+
+.chart rect {
+}
+
+.chart text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+.axis text {
+  font: 10px sans-serif;
+  fill: black;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}

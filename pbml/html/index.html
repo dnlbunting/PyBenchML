@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	
+  </head>
+
+<style>
+
+.chart rect {
+  fill: pink;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+.axis text {
+  font: 10px sans-serif;
+  fill: black;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+</style>
+	 
+	   
+  <body>
+	 
+	 <svg class="chart"></svg>
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="scripts/main.js"></script>
+
+  </body>
+</html>

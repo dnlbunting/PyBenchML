@@ -20,7 +20,9 @@ def results_main(args, config, dirs):
 
     elif args.output == 'mpl':
         mpl(args, config, dirs, db)
-
+        
+    elif args.output == 'server':
+        server_main(args, config, dirs, db)
         
     else:
         print "Invalid option"
